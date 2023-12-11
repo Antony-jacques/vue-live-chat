@@ -11,7 +11,7 @@
 import { ref } from "vue";
 import useLogin from '../composables/useLogin'
 export default {
-  setup() {
+  setup(props, context) {
     const email = ref("");
     const password = ref("");
 
@@ -21,7 +21,8 @@ export default {
       await login(email.value, password.value)
 
       if(!error.value){
-        console.log('user logged in')
+        // emit custom event
+        context.emit('login')
       }
     };
 
