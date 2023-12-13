@@ -11,14 +11,15 @@
 import Navbar from "../components/Navbar.vue";
 import getUser from "@/composables/getUser";
 import { projectAuth } from "@/firebase/config";
-import router from "@/router";
+import { watch } from "vue";
+import { useRouter } from "vue-router";
 export default {
   components: { Navbar },
   setup() {
     const { user } = getUser();
+    const router = useRouter();
 
-    projectAuth.onAuthStateChanged((_user) => {
-      user.value = _user;
+    watch(user, () => {
       if (!user.value) {
         router.push({ name: "welcome" });
       }
