@@ -8,7 +8,6 @@ const user = ref(projectAuth.currentUser);
 // this f fire everytime the user login or logout
 // if the user is logged in, user's data are in _user
 projectAuth.onAuthStateChanged((_user) => {
-  console.log("user state change. Current user is", _user);
   user.value = _user;
 });
 
